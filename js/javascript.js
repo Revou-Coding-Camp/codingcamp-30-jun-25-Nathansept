@@ -30,3 +30,36 @@ function currentSlide(n) {
 }
 
 showSlides();
+
+const form = document.getElementById('contact-form');
+const result = document.getElementById('result');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const dob = document.getElementById('dob').value;
+    const gender = document.querySelector('input[name="gender"]:checked')?.value;
+    const message = document.getElementById('message').value;
+    const waktu = new Date().toLocaleString("id-ID", {
+    timeZone: "Asia/Jakarta",
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+    });
+
+    document.getElementById('time').textContent = waktu + " WIB";
+
+
+    result.innerHTML = `
+      <p><strong>Current time:</strong> ${waktu} WIB</p>
+      <p><strong>Nama:</strong> ${name}</p>
+      <p><strong>Tanggal Lahir:</strong> ${dob}</p>
+      <p><strong>Jenis Kelamin:</strong> ${gender}</p>
+      <p><strong>Pesan:</strong> ${message}</p>
+    `;
+  });
